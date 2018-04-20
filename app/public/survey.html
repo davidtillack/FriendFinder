@@ -222,60 +222,56 @@
 
       $(".chosen-select").chosen({
         disable_search_threshold: 10,
-        no_results_text: "Nothing found.",
+        no_results_text: "Oops, nothing found!",
         width: "95%"
       });
+      // On click, validate the survey 
+      $(document).ready(function () {
+        $("#submit").on("click", function () {
+          function validateForm() {
+            var isValid = true;
+            $('.validate').each(function () {
+              if ($(this).val() === '') {
+                isValid = false;
+              }
+            });
+            return isValid;
+          }
+          if (validateForm() == true) {
+            // Match
+            var friendMatch = {
+              name: $('#name').val().trim(),
+              photo: $('#photo').val().trim(),
+              description: $('#description').val().trim(),
+              scores: [
+                $('#q1').val(),
+                $('#q2').val(),
+                $('#q3').val(),
+                $('#q4').val(),
+                $('#q5').val(),
+                $('#q6').val(),
+                $('#q7').val(),
+                $('#q8').val(),
+                $('#q9').val(),
+                $('#q10').val()
+              ]
+            };
+            // Post that data to friend api
+            $.post("/api/friend", friendMatch, function (data) {
+              $("#match-name").text(data.name);
+              $("#matchPhoto").attr("src", data.photo);
+              $("#matchDescription").text(data.description);
+            });
+            $('#results-modal').modal("toggle");
+          } else {
+            alert("Nice try, but really, all questions are required.")
+          }
 
-      // Capture the form inputs
-      $("#submit").on("click", function (event) {
-        event.preventDefault();
-        // Form validation
-        function validateForm() {
-          var isValid = true;
-          $(".form-control").each(function () {
-            if ($(this).val() === "") {
-              isValid = false;
-            }
-          });
-          $(".chosen-select").each(function () {
-            if ($(this).val() === "") {
-              isValid = false;
-            }
-          });
-          return isValid;
-        }
-        // If all required fields are filled
-        if (validateForm()) {
-          // Create an object for the user"s data
-          var friendMatch = {
-            name: $("#name").val(),
-            photo: $("#photo").val(),
-            description: $("#description").val(),
-            scores: [
-              $("#q1").val(),
-              $("#q2").val(),
-              $("#q3").val(),
-              $("#q4").val(),
-              $("#q5").val(),
-              $("#q6").val(),
-              $("#q7").val(),
-              $("#q8").val(),
-              $("#q9").val(),
-              $("#q10").val()
-            ]
-          };
-          // AJAX post the data to the friends API.
-          $.post("/api/friend", friendMatch, function (data) {
-            // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-            $("#match-name").text(data.name);
-            $("#match-img").attr("src", data.photo);
-            $("#description").text(data.description);
-            // Show the modal with the best match
-            $("#results-modal").modal("toggle");
-          });
-        } else {
-          alert("Please fill out all fields!");
-        }
+          // Empty fields after survey filled out
+          $('#name').val("");
+          $('#photo').val("");
+          $('#description').val("");
+        });
       });
     </script>
 </body>
