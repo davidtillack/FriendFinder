@@ -218,7 +218,8 @@
       </div>
     </div>
 
-    <script type="text/javascript">
+    <script>
+
       $(".chosen-select").chosen({
         disable_search_threshold: 10,
         no_results_text: "Oops, nothing found!",
@@ -234,7 +235,6 @@
                 isValid = false;
               }
             });
-
             return isValid;
           }
           if (validateForm() == true) {
@@ -261,8 +261,8 @@
               $("#match-name").text(data.name);
               $("#matchPhoto").attr("src", data.photo);
               $("#matchDescription").text(data.description);
+              $('#results-modal').modal();
             });
-            $('#results-modal').modal();
           } else {
             alert("Nice try, but really, all questions are required.")
           }
@@ -271,16 +271,6 @@
           $('#name').val("");
           $('#photo').val("");
           $('#description').val("");
-          $('#q1').val("");
-          $('#q2').val("");
-          $('#q3').val("");
-          $('#q4').val("");
-          $('#q5').val("");
-          $('#q6').val("");
-          $('#q7').val("");
-          $('#q8').val("");
-          $('#q9').val("");
-          $('#q10').val("");
         });
       });
     </script>

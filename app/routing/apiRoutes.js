@@ -33,6 +33,6 @@ module.exports = function(app) {
     res.json(yourFriend);
 
     // Push new friend match into array
-    array.push(req.body);
+    array.push(yourFriend);
   });
 };
