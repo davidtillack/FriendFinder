@@ -220,6 +220,22 @@
 
     <script>
 
+      var config = {
+        ".chosen-select": {},
+        ".chosen-select-deselect": {
+          allow_single_deselect: true
+        },
+        ".chosen-select-no-single": {
+          disable_search_threshold: 10
+        },
+        ".chosen-select-no-results": {
+          no_results_text: "Oops, nothing found!"
+        },
+        ".chosen-select-width": {
+          width: "95%"
+        }
+      };
+
       $("#submit").click(function (event) {
         event.preventDefault();
         if ($("#name").val() == "" || $("#photo").val() == "" || $("#description").val() == "" || $(".chosen-select") == "") {
@@ -250,7 +266,7 @@
           }
           $("name").val("");
           $("#photo").val("");
-          $(".chosen-select").val(0);
+          $("#description").val("");
         })
       })
     </script>
