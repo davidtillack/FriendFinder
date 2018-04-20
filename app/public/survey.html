@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Friend Finder Survey</title>
+
+  <!-- CSS Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <!--JQuery-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <!--Chosen (user-friendly boxes) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Survey Questions</h2>
+    <hr>
+    <hr>
+    <h3>
+      <strong>Friend Match Maker 3000</strong>
+      <br>
+      <i>Patent Reference ID: I88C49202</i>
+    </h3>
+    <hr>
+    <h4>Name</h4>
+    <input type="text" id="name" class="form-control" required>
+    <h4>Photo Image Link</h4>
+    <input type="text" id="photo" class="form-control" required>
+    <h4>Short Description About Yourself</h4>
+    <input type="text" id="descript" class="form-control" required>
+    <hr>
+    <hr>
+    <h3>
+      <strong> Survey Question 1</strong>
+    </h3>
+    <h4> How important to you is a healthy lifestyle?</h4>
+    <select class="chosen-select" id="q1" style="display: none;">
+      <option value></option>
+      <option value="1"> 1 - I'd die for a healthy lifestyle </option>
+      <option value="2"> 2 - Pretty important</option>
+      <option value="3"> 3 - Indifferent </option>
+      <option value="4"> 4 - Eh </option>
+      <option value="5"> 5 - *Sips a milkshake* Healthy ... who? </option>
+    </select>
+
+    <h3>
+      <strong> Survey Question 2</strong>
+    </h3>
+    <h4> How much money do you make a year?</h4>
+    <select class="chosen-select" id="q2" style="display:none;">
+      <option value></option>
+      <option value="1"> 1 - $200k+</option>
+      <option value="2">2 - $100k to $200k</option>
+      <option value="3"> 3 - $75k to $100k</option>
+      <option value="4">4 - $50k to $75k</option>
+      <option value="5"> 5 - Under $50k</option>
+    </select>
+
+    <strong> Survey Question 3</strong>
+    </h3>
+    <h4> What type of pet do you have?</h4>
+    <select class="chosen-select" id="q3" style="display:none;">
+      <option value></option>
+      <option value="1"> 1 - Dog</option>
+      <option value="2">2 - Cat</option>
+      <option value="3">3 - Bird</option>
+      <option value="4">4 - Fish</option>
+      <option value="5">5 - Other (Uh-Oh...) </option>
+    </select>
+
+    <h3>
+      <strong> Survey Question 4</strong>
+    </h3>
+    <h4> What is your favorite sport (play or watch)?</h4>
+    <select class="chosen-select" id="q4" style="display:none;">
+      <option value></option>
+      <option value="1">1 - Soccer</option>
+      <option value="2">2 - Football</option>
+      <option value="3">3 - Basketball</option>
+      <option value="4">4 - Golf</option>
+      <option value="5">5 - Tennis</option>
+      <option value="6">6 - Hard pass</option>
+    </select>
+
+    <h3>
+      <strong> Survey Question 5</strong>
+    </h3>
+    <h4> Favorite hobby / activity?</h4>
+    <select class="chosen-select" id="q5" style="display:none;">
+      <option value></option>
+      <option value="1">1 - Hiking</option>
+      <option value="2">2 - Reading</option>
+      <option value="3">3 - Fishing</option>
+      <option value="4">4 - Netflix and Chill</option>
+      <option value="5">5 - Other</option>
+    </select>
+
+    <h3>
+      <strong> Survey Question 6</strong>
+    </h3>
+    <h4> Favorite type of food?</h4>
+    <select class="chosen-select" id="q6" style="display:none;">
+      <option value></option>
+      <option value="1">1 - American Food</option>
+      <option value="2">2 - Japanese Food</option>
+      <option value="3">3 - Mexican Food</option>
+      <option value="4">4 - Chinese Food</option>
+      <option value="5">5 - Italian Food</option>
+      <option value="6">6 - Lebanese Food</option>
+      <option value="7">7 - Thai Food</option>
+      <option value="8">8 - Indian Food</option>
+    </select>
+
+    <h3>
+      <strong> Survey Question 7</strong>
+    </h3>
+    <h4> What do you do when you see a mess?</h4>
+    <select class="chosen-select" id="q7" style="display:none;">
+      <option value></option>
+      <option value="1">1 - Uh... Clean it up?</option>
+      <option value="2">2 - Bark at it</option>
+      <option value="3">3 - Not my mess not my problem</option>
+      <option value="4">4 - Pretend it is not there</option>
+      <option value="5">5 - Get someone else to clean it up</option>
+    </select>
+
+    <h3>
+      <strong> Survey Question 8</strong>
+    </h3>
+    <h4> Where would you rather live?</h4>
+    <select class="chosen-select" id="q8" style="display:none;">
+      <option value></option>
+      <option value="1">1 - The beach</option>
+      <option value="2">2 - The mountains</option>
+      <option value="3">3 - A farm</option>
+      <option value="4">4 - A city</option>
+      <option value="5">5 - Surrounding area of city</option>
+    </select>
+
+    <h3>
+      <strong> Survey Question 9</strong>
+    </h3>
+    <h4> Which show would you rather watch?</h4>
+    <select class="chosen-select" id="q9" style="display:none;">
+      <option value></option>
+      <option value="1">1 - Shark Tank</option>
+      <option value="2">2 - The Office </option>
+      <option value="3">3 - Silicon Valley</option>
+      <option value="4">4 - House of Cards</option>
+      <option value="5">5 - Breaking Bad </option>
+    </select>
+
+    <h3>
+      <strong> Survey Question 10</strong>
+    </h3>
+    <h4> Where would you most likely be found?</h4>
+    <select class="chosen-select" id="q10" style="display:none;">
+      <option value></option>
+      <option value="1">1 - In my room</option>
+      <option value="2">2 - Somewhere outdoors</option>
+      <option value="3">3 - In a store</option>
+      <option value="4">4 - Library</option>
+      <option value="5">5 - An office</option>
+    </select>
+
+    <br>
+    <br>
+
+    <!-- Footer Area & Submit Button -->
+    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
+      <i class="fa fa-check-circle" aria-hidden="true"></i> Submit
+    </button>
+    <hr>
+    <footer class="footer">
+      <div class="container">
+        <p>
+          <a href="/api/friends">API Friends List</a>
+          |
+          <a href="https://github.com/davidtillack/FriendFinder" target="_blank">Github Repo</a>
+        </p>
+      </div>
+    </footer>
+
+    <!--Modal to display match -->
+    <div id="results-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">X</button>
+            <h2 class="modal-title">
+              <strong> Best Match</strong>
+            </h2>
+          </div>
+          <div class="modal-body">
+            <h2 id="match-name"></h2>
+            <img id="matchPic" src="" alt="Match's Image">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(".chosen-select").chosen({
+        disable_search_threshold: 10,
+        no_results_text: "Oops, nothing found!",
+        width: "95%"
+      });
+      // On click, validate the survey 
+      $(document).ready(function () {
+        $("#submit").on("click", function () {
+          function validateForm() {
+            var isValid = true;
+            $('.validate').each(function () {
+              if ($(this).val() === '') {
+                isValid = false;
+              }
+            });
+
+            return isValid;
+          }
+          if (validateForm() == true) {
+            // Match
+            var friendMatch = {
+              name: $('#name').val().trim(),
+              photo: $('#photo').val().trim(),
+              scores: [
+                $('#q1').val(),
+                $('#q2').val(),
+                $('#q3').val(),
+                $('#q4').val(),
+                $('#q5').val(),
+                $('#q6').val(),
+                $('#q7').val(),
+                $('#q8').val(),
+                $('#q9').val(),
+                $('#q10').val()
+              ]
+            };
+            // Current user's URL
+            var currentURL = window.location.origin;
+            // Post that data to friend api
+            $.post(currentURL + "/api/friends", friendMatch, function (data) {
+              $("#matchName").text(data.name);
+              $("#matchPhoto").attr("src", data.photo);
+            });
+            $('#results-modal').modal();
+          } else {
+            alert("Nice try, but really, all questions are required.")
+          }
+
+          // Empty fields after survey filled out
+          $('#name').val("");
+          $('#photo').val("");
+          $('#q1').val("");
+          $('#q2').val("");
+          $('#q3').val("");
+          $('#q4').val("");
+          $('#q5').val("");
+          $('#q6').val("");
+          $('#q7').val("");
+          $('#q8').val("");
+          $('#q9').val("");
+          $('#q10').val("");
+        });
+      });
+    </script>
+</body>
+
+</html>
