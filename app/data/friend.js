@@ -1,6 +1,6 @@
 var array = [
   {
-    name: John,
+    name: "John",
     photo: "",
     scores: ["3", "2", "3", "3", "3", "3", "3", "3", "3", "3"]
   }
