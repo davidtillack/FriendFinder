@@ -209,7 +209,7 @@
           <div class="modal-body">
             <h2 id="match-name"></h2>
             <h4 id="matchDescription"></h4>
-            <img id="matchPhoto" src="" alt="Match's Image">
+            <img id="matchPhoto" src="" alt="Maybe you have no match? RIP">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
@@ -256,13 +256,11 @@
                 $('#q10').val()
               ]
             };
-            // Current user's URL
-            var currentURL = window.location.origin;
             // Post that data to friend api
-            $.post(currentURL + "/api/friend", friendMatch, function (data) {
+            $.post(window.location.origin + "/api/friend", friendMatch, function (data) {
               $("#match-name").text(data.name);
               $("#matchPhoto").attr("src", data.photo);
-              $("#matchDescription").attr("src", data.description);
+              $("#matchDescription").text(data.description);
             });
             $('#results-modal').modal();
           } else {
