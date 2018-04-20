@@ -220,59 +220,39 @@
 
     <script>
 
-      $(".chosen-select").chosen({
-        disable_search_threshold: 10,
-        no_results_text: "Oops, nothing found!",
-        width: "95%"
-      });
-      // On click, validate the survey 
-      $(document).ready(function () {
-        $("#submit").on("click", function () {
-          function validateForm() {
-            var isValid = true;
-            $('.validate').each(function () {
-              if ($(this).val() === '') {
-                isValid = false;
-              }
-            });
-            return isValid;
-          }
-          if (validateForm() == true) {
-            // Match
-            var friendMatch = {
-              name: $('#name').val().trim(),
-              photo: $('#photo').val().trim(),
-              description: $('#description').val().trim(),
-              scores: [
-                $('#q1').val(),
-                $('#q2').val(),
-                $('#q3').val(),
-                $('#q4').val(),
-                $('#q5').val(),
-                $('#q6').val(),
-                $('#q7').val(),
-                $('#q8').val(),
-                $('#q9').val(),
-                $('#q10').val()
-              ]
-            };
-            // Post that data to friend api
-            $.post(window.location.origin + "/api/friend", friendMatch, function (data) {
-              $("#match-name").text(data.name);
-              $("#matchPhoto").attr("src", data.photo);
-              $("#matchDescription").text(data.description);
-              $('#results-modal').modal();
-            });
-          } else {
-            alert("Nice try, but really, all questions are required.")
-          }
+      $("#submit").click(function (event) {
+        event.preventDefault();
+        if ($("#name").val() == "" || $("#photo").val() == "" || $("#description").val() == "" || $(".chosen-select") == "") {
+          $("#match-name").text("Please fill out all the fields!");
+          $("#results-modal").modal("toggle");
+        }
+        else {
+          var scores = JSON.strigify([$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]);
 
-          // Empty fields after survey filled out
-          $('#name').val("");
-          $('#photo').val("");
-          $('#description').val("");
-        });
-      });
+          var newFriend = {
+            name: $("#name").val().trim(),
+            photo: $("#photo").val().trim(),
+            photo: $("#description").val().trim(),
+            scores: scores
+          }
+        }
+        $.post("/api/friend", newFriend, function (data) {
+          if (data) {
+            $("#match-name").text("You matched with: " + data.name);
+            $("#match-img").attr("src", data.photo);
+            $("#description").text(data.description);
+            $("#results-modal").modal("toggle");
+          }
+          else {
+            $("#match-name").text("Sorry, no match for you today!");
+            $("#match-img").attr("src", "https://www.shape.com/sites/shape.com/files/styles/story_detail/public/story/crying-for-no-reason_0.jpg?itok=17PRimp7");
+            $("#results-modal").modal("toggle");
+          }
+          $("name").val("");
+          $("#photo").val("");
+          $(".chosen-select").val(0);
+        })
+      })
     </script>
 </body>
 
