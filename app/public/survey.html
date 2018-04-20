@@ -42,7 +42,7 @@
     <h4>Photo Image Link</h4>
     <input type="text" id="photo" class="form-control" required>
     <h4>Short Description About Yourself</h4>
-    <input type="text" id="descript" class="form-control" required>
+    <input type="text" id="description" class="form-control" required>
     <hr>
     <hr>
     <h3>
@@ -208,7 +208,8 @@
           </div>
           <div class="modal-body">
             <h2 id="match-name"></h2>
-            <img id="matchPic" src="" alt="Match's Image">
+            <h4 id="matchDescription"></h4>
+            <img id="matchPhoto" src="" alt="Match's Image">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
@@ -241,6 +242,7 @@
             var friendMatch = {
               name: $('#name').val().trim(),
               photo: $('#photo').val().trim(),
+              description: $('#description').val().trim()
               scores: [
                 $('#q1').val(),
                 $('#q2').val(),
@@ -257,9 +259,10 @@
             // Current user's URL
             var currentURL = window.location.origin;
             // Post that data to friend api
-            $.post(currentURL + "/api/friends", friendMatch, function (data) {
-              $("#matchName").text(data.name);
+            $.post(currentURL + "/api/friend", friendMatch, function (data) {
+              $("#match-name").text(data.name);
               $("#matchPhoto").attr("src", data.photo);
+              $("#matchDescription").attr("src", data.description);
             });
             $('#results-modal').modal();
           } else {
@@ -269,6 +272,7 @@
           // Empty fields after survey filled out
           $('#name').val("");
           $('#photo').val("");
+          $('#description').val("");
           $('#q1').val("");
           $('#q2').val("");
           $('#q3').val("");
