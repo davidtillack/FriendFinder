@@ -5,7 +5,6 @@ var path = require("path");
 
 // Basic properties for express server
 var app = express();
-module.exports = app;
 var PORT = process.env.PORT || 8080;
 
 // BodyParser makes it easy for our server to interpret data sent to it.

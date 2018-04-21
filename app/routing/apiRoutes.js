@@ -14,7 +14,7 @@ module.exports = function(app) {
       var scoreDifferences = 0;
       for (var z = 0; z < friendScores.length; z++) {
         // Take the difference between two user's scores to see how close they are
-        scoreDifferences += Math.abs(friend[i].scores[z] - friendScores[z]);
+        scoreDifferences += Math.abs(parseInt(friend[i].scores[z]) - parseInt(friendScores[z]);
       }
       // Push result into "scoresArray"
       scoresArray.push(scoreDifferences);
