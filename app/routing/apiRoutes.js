@@ -1,12 +1,12 @@
 var friend = require("../data/friend.js");
 
 module.exports = function(app) {
-  app.get("/app/friend", function(req, res) {
+  app.get("/api/friend", function(req, res) {
     res.json(friend);
   });
 
   app.post("/api/friend", function(req, res) {
-    var friendScores = JSON.parse(req.body.scores);
+    var friendScores = req.body.scores;
     var scoresArray = [];
     var friendFinderMatch = 0;
 
@@ -22,17 +22,12 @@ module.exports = function(app) {
       // Push result into "scoresArray"
       scoresArray.push(scoreDifferences);
     }
+    // Sort through the array and pick the match
     scoresArray.sort(function(matchFriend1, matchFriend2) {
       return (
         matchFriend1.friendFinderMatch - matchFriendfriend2.friendFinderMatch
       );
     });
-    // Compare all now to find best match
-    // for (var i = 0; i < scoresArray.length; i++) {
-    //   if (scoresArray[i] <= scoresArray[friendFinderMatch]) {
-    //     friendFinderMatch = i;
-    //   }
-    // }
     // friend match data
     res.json(friend[scoresArray[0].index]);
 
