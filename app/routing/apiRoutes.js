@@ -6,10 +6,9 @@ module.exports = function(app) {
   });
 
   app.post("/api/friend", function(req, res) {
-    var friendScores = req.body.scores;
+    var friendScores = parseInt(req.body.scores);
     var scoresArray = [];
     var friendFinderMatch = 0;
-
     // Run through list of existing friends
     for (var i = 0; friend.length; i++) {
       var scoreDifferences = 0;
