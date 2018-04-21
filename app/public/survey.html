@@ -35,8 +35,6 @@
     <input type="text" id="name" class="form-control" required>
     <h4>Photo Image Link</h4>
     <input type="text" id="photo" class="form-control" required>
-    <!-- <h4>Short Description About Yourself</h4>
-    <input type="text" id="description" class="form-control" required> -->
     <hr>
     <hr>
     <h3>
@@ -220,7 +218,7 @@
           <img id="match-img" alt="No picture?" width=250px;>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">Close</button>
         </div>
       </div>
 
@@ -293,7 +291,6 @@
       else {
         alert("Please fill out all fields before submitting!");
       }
-      window.location.reload();
 
     });
   </script>
