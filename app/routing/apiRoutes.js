@@ -9,7 +9,7 @@ module.exports = function(app) {
 
   app.post("/api/friend", function(req, res) {
     var friendMatch = 0;
-    var diff = 0;
+    var diff = 500;
 
     for (var i = friend.length - 1; i >= 0; i--) {
       var totalDifference = 0;
