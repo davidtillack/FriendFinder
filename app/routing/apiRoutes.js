@@ -13,9 +13,8 @@ module.exports = function(app) {
     for (var i = friend.length - 1; i >= 0; i--) {
       var totalDifference = 0;
 
-      for (var j = 0; j < 2; j++) {
-        totalDifference =
-          totalDifference + Math.abs(friend[i].scores[j] - req.body.scores[j]);
+      for (var j = 0; j < 8; j++) {
+        totalDifference += Math.abs(friend[i].scores[j] - req.body.scores[j]);
       }
       if (totalDifference < 5) {
         friendMatch = i;
