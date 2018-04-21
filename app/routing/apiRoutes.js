@@ -9,11 +9,11 @@ module.exports = function(app) {
 
   app.post("/api/friend", function(req, res) {
     var friendMatch = 0;
-
+    // The friend array not including yourself
     for (var i = friend.length - 1; i >= 0; i--) {
       var totalDifference = 0;
-
-      for (var j = 0; j < 8; j++) {
+      // Loop over for the scores of the 10 questions & compare
+      for (var j = 0; j < 9; j++) {
         totalDifference += Math.abs(friend[i].scores[j] - req.body.scores[j]);
       }
       if (totalDifference < 5) {
