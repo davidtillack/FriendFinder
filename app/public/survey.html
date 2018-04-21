@@ -265,7 +265,6 @@
         }
         if (validateForm()) {
           // Match
-
           var scores = JSON.stringify([$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]);
           var friendMatch = {
             name: $('#name').val().trim(),
@@ -278,7 +277,7 @@
             $("#match-name").text(data.name);
             $("#matchPhoto").attr("src", data.photo);
             $("#matchDescription").text(data.description);
-            $('#results-modal').modal("toggle");
+            $("#results-modal").modal("");
           });
         } else {
           alert("Nice try, but really, all questions are required.")
