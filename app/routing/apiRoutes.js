@@ -16,7 +16,7 @@ module.exports = function(app) {
       for (var j = 0; j < 2; j++) {
         difference += Math.abs(friend[i].scores[j] - req.body.scores[j]);
       }
-      if (difference < 5) {
+      if (difference < 500) {
         friendMatch = i;
       }
     }
