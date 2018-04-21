@@ -227,7 +227,6 @@
         width: "95%"
       });
       // On click, validate the survey 
-      // $(document).ready(function () {
       $("#submit").on("click", function () {
         function validateForm() {
           var isValid = true;
@@ -240,22 +239,12 @@
         }
         if (validateForm() == true) {
           // Match
+          var scores = JSON.strigify([$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]);
           var friendMatch = {
             name: $('#name').val().trim(),
             photo: $('#photo').val().trim(),
             description: $('#description').val().trim(),
-            scores: [
-              $('#q1').val(),
-              $('#q2').val(),
-              $('#q3').val(),
-              $('#q4').val(),
-              $('#q5').val(),
-              $('#q6').val(),
-              $('#q7').val(),
-              $('#q8').val(),
-              $('#q9').val(),
-              $('#q10').val()
-            ]
+            scores: scores
           };
           // Post that data to friend api
           $.post("/api/friend", friendMatch, function (data) {
@@ -283,7 +272,6 @@
         $('#q9').val();
         $('#q10').val();
       });
-      // });
     </script>
 </body>
 
