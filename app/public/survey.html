@@ -265,7 +265,7 @@
         }
         if (validateForm()) {
           // Match
-          var scores = JSON.stringify([$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]);
+          var scores = parseInt([$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]);
           var friendMatch = {
             name: $('#name').val().trim(),
             photo: $('#photo').val().trim(),
@@ -277,26 +277,26 @@
             $("#match-name").text(data.name);
             $("#matchPhoto").attr("src", data.photo);
             $("#matchDescription").text(data.description);
-            $("#results-modal").modal("");
+            $("#results-modal").modal("toggle");
           });
         } else {
           alert("Nice try, but really, all questions are required.")
         };
 
         // Empty fields after survey filled out
-        $('#name').val("");
-        $('#photo').val("");
-        $('#description').val("");
-        $('#q1').val();
-        $('#q2').val();
-        $('#q3').val();
-        $('#q4').val();
-        $('#q5').val();
-        $('#q6').val();
-        $('#q7').val();
-        $('#q8').val();
-        $('#q9').val();
-        $('#q10').val();
+        // $('#name').val("");
+        // $('#photo').val("");
+        // $('#description').val("");
+        // $('#q1').val();
+        // $('#q2').val();
+        // $('#q3').val();
+        // $('#q4').val();
+        // $('#q5').val();
+        // $('#q6').val();
+        // $('#q7').val();
+        // $('#q8').val();
+        // $('#q9').val();
+        // $('#q10').val();
       });
     </script>
 </body>
