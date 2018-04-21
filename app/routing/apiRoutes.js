@@ -8,20 +8,26 @@ module.exports = function(app) {
   });
 
   app.post("/api/friend", function(req, res) {
+    var newFriendScores = req.body.scores;
+    var scoresArray = [];
     var friendMatch = 0;
 
-    for (var i = friend.length - 1; i >= 0; i--) {
-      var totalDifference = 0;
-
-      for (var j = 0; j < 2; j++) {
-        totalDifference =
-          totalDifference + Math.abs(friend[i].scores[j] - req.body.scores[j]);
-      }
-      if (totalDifference < 5) {
-        friendMatch = i;
+    //runs through all current friends
+    for (var i = 0; friend.length; i++) {
+      var scoresDiff = 0;
+      //run through scores to compare friends
+      for (var j = 0; j < newFriendScores.length; j++) {
+        scoresDiff += Math.abs(friend[i].scores[j] - newFriendScores[j]);
       }
     }
 
+    //after all friends are compared, find best match
+    for (var i = 0; i < scoresArray.length; i++) {
+      if (scoresArray[i] <= scoresArray[friendMatch]) {
+        friendMatch = i;
+      }
+      scoresArray.push(scoresDiff);
+    }
     // push the user's input
     friend.push(req.body);
 
