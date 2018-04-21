@@ -207,7 +207,7 @@
         </div>
         <div class="modal-body">
           <h2 id="match-name"></h2>
-          <img id="match-img" src="" alt="">
+          <img id="match-img">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -276,7 +276,7 @@
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#match-name").text(data.name);
           console.log("working?");
-          $('#match-img').attr("src", data.photo);
+          $("#match-img").attr("src", data.photo);
           $("#results-modal").modal('toggle');
         });
       }
