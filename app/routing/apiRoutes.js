@@ -10,7 +10,7 @@ module.exports = function(app) {
     var scoresArray = [];
     var friendFinderMatch = 0;
     // Run through list of existing friends
-    for (var i = 0; friend.length; i++) {
+    for (var i = 0; i < friend.length; i++) {
       var scoreDifferences = 0;
       for (var z = 0; z < friendScores.length; z++) {
         // Take the difference between two user's scores to see how close they are
