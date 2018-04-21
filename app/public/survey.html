@@ -182,127 +182,127 @@
     <br>
     <br>
 
-    <!-- Footer Area & Submit Button -->
+    <!-- Submit Button -->
     <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
-      <i class="fa fa-check-circle" aria-hidden="true"></i> Submit
-    </button>
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+      Submit</button>
+
     <hr>
     <footer class="footer">
       <div class="container">
         <p>
-          <a href="/api/friend">API Friends List</a>
-          |
-          <a href="https://github.com/davidtillack/FriendFinder" target="_blank">Github Repo</a>
+          <a href="/api/friend">API Friends List</a> |
+          <a href="https://github.com/davidtillack/FriendFinder">GitHub Repo</a>
         </p>
       </div>
     </footer>
 
-    <!--Modal to display match -->
-    <div id="results-modal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">X</button>
-            <h2 class="modal-title">
-              <strong> Best Match</strong>
-            </h2>
-          </div>
-          <div class="modal-body">
-            <h2 id="match-name"></h2>
-            <h4 id="matchDescription"></h4>
-            <img id="matchPhoto" src="" alt="Maybe you have no match? RIP">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>
-          </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="results-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title">
+            <strong>Best Match</strong>
+          </h2>
+        </div>
+        <div class="modal-body">
+          <h2 id="match-name"></h2>
+          <img id="match-img" src="" alt="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
+
     </div>
+  </div>
 
-    <script>
+  <script type="text/javascript">
+    // Chosen CSS
+    var config = {
+      ".chosen-select": {},
+      ".chosen-select-deselect": {
+        allow_single_deselect: true
+      },
+      ".chosen-select-no-single": {
+        disable_search_threshold: 10
+      },
+      ".chosen-select-no-results": {
+        no_results_text: "Oops, nothing found!"
+      },
+      ".chosen-select-width": {
+        width: "95%"
+      }
+    };
 
-      // Chosen CSS
-      var config = {
-        ".chosen-select": {},
-        ".chosen-select-deselect": {
-          allow_single_deselect: true
-        },
-        ".chosen-select-no-single": {
-          disable_search_threshold: 10
-        },
-        ".chosen-select-no-results": {
-          no_results_text: "Oops, nothing found!"
-        },
-        ".chosen-select-width": {
-          width: "95%"
-        }
-      };
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
 
-      for (var selector in config) {
-        $(selector).chosen(config[selector]);
+    // Capture the form inputs
+    $("#submit").on("click", function (event) {
+      event.preventDefault();
+
+      // Form validation
+      function validateForm() {
+        var isValid = true;
+        $(".form-control").each(function () {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+
+        $(".chosen-select").each(function () {
+
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
       }
 
-      // Capture the form inputs
-      $("#submit").on("click", function (event) {
-        event.preventDefault();
-
-        // Form validation
-        function validateForm() {
-          var isValid = true;
-          $(".form-control").each(function () {
-            if ($(this).val() === "") {
-              isValid = false;
-            }
-          });
-
-          $(".chosen-select").each(function () {
-
-            if ($(this).val() === "") {
-              isValid = false;
-            }
-          });
-          return isValid;
-        }
-        if (validateForm()) {
-          // Match
-          var scores = parseInt([$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]);
-          var friendMatch = {
-            name: $('#name').val().trim(),
-            photo: $('#photo').val().trim(),
-            description: $('#description').val().trim(),
-            scores: scores
-          };
-          // Post that data to friend api
-          $.post("/api/friend", friendMatch, function (data) {
-            console.log("#match-name");
-            console.log(data.name);
-            console.log("#matchPhoto");
-            console.log(data.photo);
-            $("#match-name").text(data.name);
-            $("#matchPhoto").attr("src", data.photo);
-            $("#matchDescription").text(data.description);
-            $("#results-modal").modal("toggle");
-          });
-        } else {
-          alert("Nice try, but really, all questions are required.")
+      // If all required fields are filled
+      if (validateForm()) {
+        // Create an object for the user"s data
+        var userData = {
+          name: $("#name").val(),
+          photo: $("#photo").val(),
+          scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+          ]
         };
 
-        // Empty fields after survey filled out
-        // $('#name').val("");
-        // $('#photo').val("");
-        // $('#description').val("");
-        // $('#q1').val();
-        // $('#q2').val();
-        // $('#q3').val();
-        // $('#q4').val();
-        // $('#q5').val();
-        // $('#q6').val();
-        // $('#q7').val();
-        // $('#q8').val();
-        // $('#q9').val();
-        // $('#q10').val();
-      });
-    </script>
+        // AJAX post the data to the friends API.
+        $.post("/api/friend", userData, function (data) {
+
+          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+          $("#match-name").text(data.name);
+          $("#match-img").attr("src", data.photo);
+
+          // Show the modal with the best match
+          $("#results-modal").modal("toggle");
+
+        });
+      } else {
+        alert("Please fill out all fields before submitting!");
+      }
+    });
+  </script>
 </body>
 
 </html>

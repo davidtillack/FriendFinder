@@ -9,8 +9,9 @@ var PORT = process.env.PORT || 8080;
 
 // BodyParser makes it easy for our server to interpret data sent to it.
 app.use(bodyParser.json());
-// app.use(express.static(path.join(__dirname, "./app/public")));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Routing files
 require("./app/routing/apiRoutes.js")(app);
