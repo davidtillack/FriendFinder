@@ -9,7 +9,6 @@ module.exports = function(app) {
 
   app.post("/api/friend", function(req, res) {
     var friendMatch = 0;
-    var difference = 5;
 
     for (var i = friend.length - 1; i >= 0; i--) {
       var totalDifference = 0;
@@ -18,8 +17,7 @@ module.exports = function(app) {
         totalDifference =
           totalDifference + Math.abs(friend[i].scores[j] - req.body.scores[j]);
       }
-      if (totalDifference < difference) {
-        difference = totalDifference;
+      if (totalDifference < 5) {
         friendMatch = i;
       }
     }
