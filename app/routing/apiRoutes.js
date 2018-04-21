@@ -1,4 +1,6 @@
 var friend = require("../data/friend.js");
+var bodyParser = require("body-parser");
+var path = require("path");
 
 module.exports = function(app) {
   app.get("/api/friend", function(req, res) {
@@ -6,31 +8,26 @@ module.exports = function(app) {
   });
 
   app.post("/api/friend", function(req, res) {
-    var friendScores = req.body.scores;
-    var scoresArray = [];
-    var friendFinderMatch = 0;
-    // Run through list of existing friends
-    for (var i = 0; i < friend.length; i++) {
-      var scoreDifferences = 0;
-      for (var z = 0; z < friendScores.length; z++) {
-        // Take the difference between two user's scores to see how close they are
-        scoreDifferences += Math.abs(friend[i].scores[z] - friendScores[z]);
-        console.log(scoreDifferences);
-      }
-      // Push result into "scoresArray"
-      scoresArray.push(scoreDifferences);
-      console.log(scoresArray);
-    }
-    // Sort through the array and pick the match
-    scoresArray.sort(function(matchFriend1, matchFriend2) {
-      return (
-        matchFriend1.friendFinderMatch - matchFriendfriend2.friendFinderMatch
-      );
-    });
-    // friend match data
-    res.json(friend[scoresArray[0].index]);
+       
+    var userData = {
+        name: req.body.name,
+        photo: req.body.photo,
+        scores: JSON.parse(req.body.scores)
+        };
+    
+    var friendArray = [];
 
-    // Push new friend match into array
-    friend.push(req.body);
-  });
-};
+    friend.forEach(function(question, index) {
+        var difference = 0;
+        for (var i = 0; i < question.score.length; i++) {
+            difference += Math.abs(question.scores[i] - userData.scores[i]);
+            friendArray.push({"difference": difference, "index": index});           
+        }
+    });
+    friendArray.sort(function(friend1, friend2){
+        return friend1.difference - friend2.difference;
+    });
+    friend.push(userData);
+    res.json(friend[friendArray[0].index]);
+    });
+
