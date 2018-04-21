@@ -6,24 +6,29 @@ module.exports = function(app) {
   });
 
   app.post("/api/friend", function(req, res) {
-    var friendArray = [];
-    var friendMatch = {
-      name: req.body.name,
-      photo: req.body.photo,
-      description: req.body.description,
-      scores: parseInt(req.body.scores)
-    };
-    friend.forEach(function(question, index) {
-      var difference = 0;
-      for (var i = 0; question.score.length; i++) {
-        difference += Math.abs(question.scores[i] - friendMatch.scores[i]);
-        friendArray.push({ difference: difference, index: index });
+    var friendScores = req.body.scores;
+    var scoresArray = [];
+    var friendFinderMatch = 0;
+    // Run through list of existing friends
+    for (var i = 0; friend.length; i++) {
+      var scoreDifferences = 0;
+      for (var z = 0; z < friendScores.length; z++) {
+        // Take the difference between two user's scores to see how close they are
+        scoreDifferences += Math.abs(friend[i].scores[z] - friendScores[z]);
       }
+      // Push result into "scoresArray"
+      scoresArray.push(scoreDifferences);
+    }
+    // Sort through the array and pick the match
+    scoresArray.sort(function(matchFriend1, matchFriend2) {
+      return (
+        matchFriend1.friendFinderMatch - matchFriendfriend2.friendFinderMatch
+      );
     });
-    friendArray.sort(function(friend1, friend2) {
-      return friend1.difference - friend2.difference;
-    });
-    friend.push(friendMatch);
-    res.json(friend[friendArray[0].index]);
+    // friend match data
+    res.json(friend[scoresArray[0].index]);
+
+    // Push new friend match into array
+    friend.push(req.body);
   });
 };
