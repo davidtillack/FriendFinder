@@ -274,6 +274,10 @@
           };
           // Post that data to friend api
           $.post("/api/friend", friendMatch, function (data) {
+            console.log("#match-name");
+            console.log(data.name);
+            console.log("#matchPhoto");
+            console.log(data.photo);
             $("#match-name").text(data.name);
             $("#matchPhoto").attr("src", data.photo);
             $("#matchDescription").text(data.description);
