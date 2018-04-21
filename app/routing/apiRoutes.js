@@ -13,7 +13,7 @@ module.exports = function(app) {
     for (var i = friend.length; i >= 0; i--) {
       var difference = 0;
 
-      for (var j = 0; j < 9; j++) {
+      for (var j = 0; j < 2; j++) {
         difference += Math.abs(friend[i].scores[j] - req.body.scores[j]);
       }
       if (difference < 5) {
