@@ -41,8 +41,8 @@
     <input type="text" id="name" class="form-control" required>
     <h4>Photo Image Link</h4>
     <input type="text" id="photo" class="form-control" required>
-    <h4>Short Description About Yourself</h4>
-    <input type="text" id="description" class="form-control" required>
+    <!-- <h4>Short Description About Yourself</h4>
+    <input type="text" id="description" class="form-control" required> -->
     <hr>
     <hr>
     <h3>
@@ -271,6 +271,7 @@
       if (validateForm()) {
         // Create an object for the user's data
         var scores = JSON.stringify([$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]);
+        console.log(scores);
         var userData = {
           name: $("#name").val(),
           photo: $("#photo").val(),
@@ -279,7 +280,8 @@
 
         // AJAX post the data to the friends API.
         $.post("/api/friend", userData, function (data) {
-
+          console.log(data.name);
+          console.log(data.photo);
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#match-name").text(data.name);
           $("#match-img").attr("src", data.photo);
