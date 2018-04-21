@@ -270,7 +270,7 @@
       // If all required fields are filled
       if (validateForm()) {
         // Create an object for the user's data
-        var scores = JSON.stringify([$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]);
+        var scores = parseInt([$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]);
         console.log(scores);
         var userData = {
           name: $("#name").val(),
